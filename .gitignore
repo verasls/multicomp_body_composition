@@ -1,0 +1,6 @@
+data/
+docs/
+output/
+other/
+.DS_Store
+*.docx
