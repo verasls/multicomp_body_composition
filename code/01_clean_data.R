@@ -48,6 +48,7 @@ data <- read_xlsx(here("data", "raw_data.xlsx")) |>
     alst = ALST_semBMC
   ) |>
   mutate(
+    subj = as_factor(subj),
     sex = recode_factor(
       sex, `1` = "Male", `2` = "Female"
     )
