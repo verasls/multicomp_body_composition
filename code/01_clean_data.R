@@ -12,13 +12,13 @@ data <- read_xlsx(here("data", "raw_data.xlsx")) |>
     subj = Id, age = Idade, sex = Sexo,
     height = Estatura_cm, weight = Peso_kg,
     # Rename skinfold variables
-    sf_subescapular = DC_Se_mediana,
+    sf_subscapular = DC_Se_mediana,
     sf_triceps = DC_Tr_mediana,
     sf_biceps = DC_Bi_mediana,
-    sf_axilar = DC_Ax_mediana,
+    sf_axillary = DC_Ax_mediana,
     sf_chest = DC_Pt_mediana,
     sf_supraliac = DC_Si_mediana,
-    sf_abdomnal = DC_AbV_mediana,
+    sf_abdominal = DC_AbV_mediana,
     sf_thigh = DC_Cx_mediana,
     sf_calf = DC_Pn_mediana,
     # Rename circumference variables
