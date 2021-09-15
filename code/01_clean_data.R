@@ -17,7 +17,7 @@ data <- read_xlsx(here("data", "raw_data.xlsx")) |>
     sf_biceps = DC_Bi_mediana,
     sf_axillary = DC_Ax_mediana,
     sf_chest = DC_Pt_mediana,
-    sf_supraliac = DC_Si_mediana,
+    sf_suprailiac = DC_Si_mediana,
     sf_abdominal = DC_AbV_mediana,
     sf_thigh = DC_Cx_mediana,
     sf_calf = DC_Pn_mediana,
