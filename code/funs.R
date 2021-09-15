@@ -19,6 +19,24 @@ kmo <- function(X) {
   kmo
 }
 
+# Scree plot
+#
+# A line plot of the eigenvalues of the principal component analysis
+# factors.
+#
+# Args:
+#   eigenvalues: A numeric vector with the eigenvalues.
+scree_plot <- function(eigenvalues) {
+  plot_data <- data.frame(
+    Eigenvalues = eigenvalues,
+    Component = seq_along(eigenvalues)
+  )
+  ggplot2::ggplot(plot_data, aes(x = Component, y = Eigenvalues)) +
+    ggplot2::geom_point() +
+    ggplot2::geom_line() +
+    ggplot2::theme_bw()
+}
+
 # Predictive residual sum of squares (PRESS)
 #
 # Args:
