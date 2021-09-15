@@ -3,6 +3,7 @@
 library(here)
 library(tidyverse)
 library(psych)
+library(lvmisc)
 library(car)
 source(here("code", "funs.R"))
 
@@ -28,7 +29,7 @@ pc1 <- principal(
   corr_matrix, nfactors = length(corr_matrix[1, ]), rotate = "varimax"
 )
 # Scree plot
-plot(pc1$values, type = "b")
+scree_plot_1 <- scree_plot(pc1$values)
 
 # 2nd PCA model (extracting 6 factors, as suggested by the eigenvalues and
 # the scree plot)
@@ -73,6 +74,28 @@ alst_uni <- lm(
 )
 alst_uni_step <- step(alst_uni)
 summary(alst_uni_step)
+
+# Build final univariate models and compute VIF
+bmc_lm <- lm(
+  bmc ~ weight + half_armspan + br_cubital + sf_triceps +
+    sf_thigh + sf_chest,
+  data = data
+)
+bmc_vif <- lvmisc::vif(bmc_lm)
+
+fm_lm <- lm(
+  fm ~ weight + half_armspan + br_cubital + sf_triceps +
+    sf_thigh + sf_chest,
+  data = data
+)
+fm_vif <- lvmisc::vif(fm_lm)
+
+alst_lm <- lm(
+  alst ~ weight + half_armspan + br_cubital + sf_triceps +
+    sf_thigh + sf_chest,
+  data = data
+)
+alst_vif <- lvmisc::vif(alst_lm)
 
 # Multivariate model ------------------------------------------------------
 
