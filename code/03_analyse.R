@@ -123,3 +123,6 @@ Manova(m)
 press_m <- press(m) |> round(2)
 q2_m <- q2(m) |> round(2)
 se_m <- se_press(m) |> round(2)
+
+# Save model
+save(m, file = here("output", "model.rda"))
