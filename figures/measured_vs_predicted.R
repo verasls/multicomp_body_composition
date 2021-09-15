@@ -43,8 +43,8 @@ alst_plot <- ggplot(plot_data, aes(x = alst_measured, y = alst_predicted)) +
     plot.margin = margin(0.5, 0.5, 0.5, 0.5, "cm")
   ) +
   labs(
-    x = "Measured appendicular lean soft tissue (kg)",
-    y = "Predicted appendicular lean soft tissue (kg)"
+    x = "Measured ALST (kg)",
+    y = "Predicted ALST (kg)"
   )
 
 fm_plot <- ggplot(plot_data, aes(x = fm_measured, y = fm_predicted)) +
@@ -68,8 +68,8 @@ fm_plot <- ggplot(plot_data, aes(x = fm_measured, y = fm_predicted)) +
     plot.margin = margin(0.5, 0.5, 0.5, 0.5, "cm")
   ) +
   labs(
-    x = "Measured fat mass (kg)",
-    y = "Predicted fat mass (kg)"
+    x = "Measured FM (kg)",
+    y = "Predicted FM (kg)"
   )
 
 bmc_plot <- ggplot(plot_data, aes(x = bmc_measured, y = bmc_predicted)) +
@@ -93,8 +93,8 @@ bmc_plot <- ggplot(plot_data, aes(x = bmc_measured, y = bmc_predicted)) +
     plot.margin = margin(0.5, 0.5, 0.5, 0.5, "cm")
   ) +
   labs(
-    x = "Measured bone mineral content (kg)",
-    y = "Predicted bone mineral content (kg)"
+    x = "Measured BMC (kg)",
+    y = "Predicted BMC (kg)"
   )
 
 # Combine plots and save --------------------------------------------------
