@@ -15,7 +15,7 @@ load(here("data", "data.rda"))
 
 # Build a correlation matrix
 corr_matrix <- data |>
-  select(where(is.double), - c(bmc, fm, alst)) |>
+  select(where(is.double), - c(alst, fm, bmc)) |>
   cor()
 # Compute its determinant
 corr_matrix_det <- det(corr_matrix)
@@ -39,8 +39,8 @@ print.psych(pc2, cut = 0.5, sort = TRUE)
 
 # Univariate models -------------------------------------------------------
 
-bmc_uni <- lm(
-  bmc ~ sf_axillary + sf_suprailiac + circ_abdominal + sf_subscapular +
+alst_uni <- lm(
+  alst ~ sf_axillary + sf_suprailiac + circ_abdominal + sf_subscapular +
     sf_biceps + sf_abdominal + circ_waist + circ_hip + circ_thorax +
     circ_arm + weight + br_biiliac + height + half_armspan + knee_height +
     br_biacromial + br_bimalleolar + br_chest + br_wrist + br_cubital +
@@ -48,8 +48,8 @@ bmc_uni <- lm(
     age + sf_chest,
   data = data
 )
-bmc_uni_step <- step(bmc_uni)
-summary(bmc_uni_step)
+alst_uni_step <- step(alst_uni)
+summary(alst_uni_step)
 
 fm_uni <- lm(
   fm ~ sf_axillary + sf_suprailiac + circ_abdominal + sf_subscapular +
@@ -63,8 +63,8 @@ fm_uni <- lm(
 fm_uni_step <- step(fm_uni)
 summary(fm_uni_step)
 
-alst_uni <- lm(
-  alst ~ sf_axillary + sf_suprailiac + circ_abdominal + sf_subscapular +
+bmc_uni <- lm(
+  bmc ~ sf_axillary + sf_suprailiac + circ_abdominal + sf_subscapular +
     sf_biceps + sf_abdominal + circ_waist + circ_hip + circ_thorax +
     circ_arm + weight + br_biiliac + height + half_armspan + knee_height +
     br_biacromial + br_bimalleolar + br_chest + br_wrist + br_cubital +
@@ -72,16 +72,16 @@ alst_uni <- lm(
     age + sf_chest,
   data = data
 )
-alst_uni_step <- step(alst_uni)
-summary(alst_uni_step)
+bmc_uni_step <- step(bmc_uni)
+summary(bmc_uni_step)
 
 # Build final univariate models and compute VIF
-bmc_lm <- lm(
-  bmc ~ weight + half_armspan + br_cubital + sf_triceps +
+alst_lm <- lm(
+  alst ~ weight + half_armspan + br_cubital + sf_triceps +
     sf_thigh + sf_chest,
   data = data
 )
-bmc_vif <- lvmisc::vif(bmc_lm)
+alst_vif <- lvmisc::vif(alst_lm)
 
 fm_lm <- lm(
   fm ~ weight + half_armspan + br_cubital + sf_triceps +
@@ -90,12 +90,12 @@ fm_lm <- lm(
 )
 fm_vif <- lvmisc::vif(fm_lm)
 
-alst_lm <- lm(
-  alst ~ weight + half_armspan + br_cubital + sf_triceps +
+bmc_lm <- lm(
+  bmc ~ weight + half_armspan + br_cubital + sf_triceps +
     sf_thigh + sf_chest,
   data = data
 )
-alst_vif <- lvmisc::vif(alst_lm)
+bmc_vif <- lvmisc::vif(bmc_lm)
 
 # Multivariate model ------------------------------------------------------
 
