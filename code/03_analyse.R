@@ -104,7 +104,7 @@ y <- cbind(data$alst, data$fm, data$bmc)
 colnames(y) <-  c("alst", "fm", "bmc")
 # Build the model
 m <- lm(
-  y ~ weight + half_armspan + br_cubital + sf_triceps + sf_thigh + sf_chest,
+  y ~ weight + half_armspan + sf_triceps + sex,
   data = data
 )
 
