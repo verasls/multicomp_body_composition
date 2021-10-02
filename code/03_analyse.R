@@ -77,22 +77,19 @@ summary(bmc_uni_step)
 
 # Build final univariate models and compute VIF
 alst_lm <- lm(
-  alst ~ weight + half_armspan + br_cubital + sf_triceps +
-    sf_thigh + sf_chest,
+  alst ~ weight + half_armspan + sf_triceps + sex,
   data = data
 )
 alst_vif <- lvmisc::vif(alst_lm)
 
 fm_lm <- lm(
-  fm ~ weight + half_armspan + br_cubital + sf_triceps +
-    sf_thigh + sf_chest,
+  fm ~ weight + half_armspan + sf_triceps + sex,
   data = data
 )
 fm_vif <- lvmisc::vif(fm_lm)
 
 bmc_lm <- lm(
-  bmc ~ weight + half_armspan + br_cubital + sf_triceps +
-    sf_thigh + sf_chest,
+  bmc ~ weight + half_armspan + sf_triceps + sex,
   data = data
 )
 bmc_vif <- lvmisc::vif(bmc_lm)
