@@ -5,6 +5,7 @@ library(tidyverse)
 library(psych)
 library(lvmisc)
 library(car)
+library(performance)
 source(here("code", "funs.R"))
 
 # Load data ---------------------------------------------------------------
@@ -104,6 +105,10 @@ m <- lm(
   y ~ weight + half_armspan + sf_triceps + sex,
   data = data
 )
+
+# Check the residuals
+check_normality(m)
+plot_residual_qq(m)
 
 # Get model statistics
 coeffs <- map(summary(m), "coefficients") |>
