@@ -66,3 +66,47 @@ se_press <- function(model) {
   df <- n - k - 1
   sqrt(press(model)) / df
 }
+
+# QQ plot of the standardized residuals
+#
+# Args:
+#   model: A multivariate regression model.
+plot_residual_qq <- function(model) {
+  require(patchwork)
+
+  plot_data <- tibble(
+    alst = rstandard(m)[, 1],
+    fm = rstandard(m)[, 2],
+    bmc = rstandard(m)[, 3]
+  )
+
+  alst_p <- ggplot2::ggplot(plot_data, ggplot2::aes(sample = .data$alst)) +
+    ggplot2::stat_qq() +
+    ggplot2::stat_qq_line(colour = "#2980b9", size = 1) +
+    ggplot2::theme_light() +
+    ggplot2::labs(
+      title = "ALST",
+      x = "Teoretical quantiles",
+      y = "Standardized residuals"
+    )
+  fm_p <- ggplot2::ggplot(plot_data, ggplot2::aes(sample = .data$fm)) +
+    ggplot2::stat_qq() +
+    ggplot2::stat_qq_line(colour = "#2980b9", size = 1) +
+    ggplot2::theme_light() +
+    ggplot2::labs(
+      title = "FM",
+      x = "Teoretical quantiles",
+      y = "Standardized residuals"
+    )
+  bmc_p <- ggplot2::ggplot(plot_data, ggplot2::aes(sample = .data$bmc)) +
+    ggplot2::stat_qq() +
+    ggplot2::stat_qq_line(colour = "#2980b9", size = 1) +
+    ggplot2::theme_light() +
+    ggplot2::labs(
+      title = "BC",
+      x = "Teoretical quantiles",
+      y = "Standardized residuals"
+    )
+
+  alst_p + fm_p + bmc_p
+}
