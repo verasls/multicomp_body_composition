@@ -6,6 +6,7 @@ library(psych)
 library(lvmisc)
 library(car)
 library(performance)
+library(ragg)
 source(here("code", "funs.R"))
 
 # Load data ---------------------------------------------------------------
@@ -108,7 +109,17 @@ m <- lm(
 
 # Check the residuals
 check_normality(m)
-plot_residual_qq(m)
+resid_plot <- plot_residual_qq(m)
+agg_png(
+  here("figures", "resid_plot.png"),
+  width = 60,
+  height = 40,
+  units = "cm",
+  res = 300,
+  scaling = 2
+)
+plot(resid_plot)
+dev.off()
 
 # Get model statistics
 coeffs <- map(summary(m), "coefficients") |>

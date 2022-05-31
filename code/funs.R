@@ -82,7 +82,11 @@ plot_residual_qq <- function(model) {
 
   alst_p <- ggplot2::ggplot(plot_data, ggplot2::aes(sample = .data$alst)) +
     ggplot2::stat_qq() +
-    ggplot2::stat_qq_line(colour = "#2980b9", size = 1) +
+    ggplot2::stat_qq_line(colour = "black", size = 1) +
+    ggplot2::scale_y_continuous(
+      limits = c(-3, 3),
+      breaks = -3:3
+    ) +
     ggplot2::theme_light() +
     ggplot2::labs(
       title = "ALST",
@@ -91,7 +95,11 @@ plot_residual_qq <- function(model) {
     )
   fm_p <- ggplot2::ggplot(plot_data, ggplot2::aes(sample = .data$fm)) +
     ggplot2::stat_qq() +
-    ggplot2::stat_qq_line(colour = "#2980b9", size = 1) +
+    ggplot2::stat_qq_line(colour = "black", size = 1) +
+    ggplot2::scale_y_continuous(
+      limits = c(-3, 3),
+      breaks = -3:3
+    ) +
     ggplot2::theme_light() +
     ggplot2::labs(
       title = "FM",
@@ -100,10 +108,14 @@ plot_residual_qq <- function(model) {
     )
   bmc_p <- ggplot2::ggplot(plot_data, ggplot2::aes(sample = .data$bmc)) +
     ggplot2::stat_qq() +
-    ggplot2::stat_qq_line(colour = "#2980b9", size = 1) +
+    ggplot2::stat_qq_line(colour = "black", size = 1) +
+    ggplot2::scale_y_continuous(
+      limits = c(-3, 3),
+      breaks = -3:3
+    ) +
     ggplot2::theme_light() +
     ggplot2::labs(
-      title = "BC",
+      title = "BMC",
       x = "Teoretical quantiles",
       y = "Standardized residuals"
     )
